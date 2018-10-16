@@ -64,7 +64,6 @@
     import fullScreen from './component/full-screen/full-screen.vue'
     import { Icon } from 'iview';
     import Bus from './bus.js';
-    import 'iview/dist/styles/iview.css'
     import './assets/base.css'
     export default {
         data() {
@@ -204,6 +203,7 @@
                 this.$refs.controlNav.classList.remove('full-screen');
                 this.$refs.videoBox.classList.add('full-screen');
                 this.$refs.controlNav.classList.add('full-screen');
+                clearTimeout(this.timer.mousemoveTimer);
                 this.timer.mousemoveTimer = setTimeout(() => {
                     if ($event.path[$event.path.length - 7].className.indexOf('controlNav') == -1) {
                         if (this.screenStatus) {
