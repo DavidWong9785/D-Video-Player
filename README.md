@@ -26,6 +26,7 @@
       @on-start="start"
       @on-ended="end"
       @on-loadeddata="loadeddata"
+      @on-timeupdate="timeupdate"
       @on-rate-change="rateChange"
       &gt;&lt;/d-video&gt;
   </pre>
@@ -46,9 +47,10 @@
     @on-pause="pause回调"
     @on-start="start回调"
     @on-ended="end回调"
+    @on-timeupdate="timeupdate回调"
     @on-loadeddata="loadeddata回调"
     @on-rate-change="点击menu切换码率的回调，返回当前码率，是数字，
-        2为流畅，1为高清，0为超清，使用者可以根据回调值设置视频播放地址"
+        2为流畅，1为高清（默认），0为超清，使用者可以根据回调值设置视频播放地址"
   </pre>
 * 注意
 - 每个回调的事件都会带上两个参数，一个是$event，一个是video对象

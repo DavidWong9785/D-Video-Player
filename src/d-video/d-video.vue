@@ -62,7 +62,6 @@
     import volumePanel from './component/volume-panel/volume-panel.vue'
     import ratePanel from './component/rate-panel/rate-panel.vue'
     import fullScreen from './component/full-screen/full-screen.vue'
-    import { Icon } from 'iview';
     import Bus from './bus.js';
     import './assets/base.css'
     export default {
@@ -98,7 +97,8 @@
                 type: String
             },
             rate: {
-                type: Number
+                type: Number,
+                default: 1
             }
         },
 
@@ -108,8 +108,7 @@
             progressBar,
             volumePanel,
             ratePanel,
-            fullScreen,
-            Icon
+            fullScreen
         },
 
         computed: {},
@@ -164,10 +163,11 @@
                 const vm = this;
                 const {
                     autoplay = false,
-                        muted = false,
-                        loop = false,
-                        preload = 'auto',
-                        poster = ''
+                    muted = false,
+                    loop = false,
+                    preload = 'auto',
+                    poster = '',
+                    noRatePanel = true,
                 } = this.options;
                 // 是否自动播放
                 if (autoplay) {
@@ -312,5 +312,4 @@
 </script>
 <style lang='scss' scoped>
     @import './d-video.scss';
-
 </style>

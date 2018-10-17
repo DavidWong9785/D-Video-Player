@@ -1,6 +1,6 @@
 {
   "name": "d-video-player",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "author": "bb <35354987+DavidWong9785@users.noreply.github.com>",
   "description": "A Vue component to video display",
   "main": "index.js",
