@@ -290,6 +290,9 @@
                 this.$refs.video.currentTime = this.progress / 100 * this.$refs.video.duration;
             },
             volumeChange(value) {
+                if (!this.volumeStatus && value != 0) {
+                    this.volumeStatus=true;
+                }
                 this.volumeProgress = value;
                 this.$refs.video.volume = value / 100;
             },
