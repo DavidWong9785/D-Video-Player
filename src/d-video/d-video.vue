@@ -1,4 +1,4 @@
-<!--  -->
+﻿<!--  -->
 <template>
     <div class="d-video-box" @mousemove="controllBottomNav" @dblclick="dbclickToggleScreen">
         <div ref="videoBox" class="d-video-panel">
@@ -261,6 +261,7 @@
                 this.volumeStatus = !this.volumeStatus;
                 if (!this.volumeStatus) {
                     this.tempVolume = this.volumeProgress;
+                    this.volumeChange(0);
                 } else {
                     this.volumeChange(this.tempVolume);
                 }
