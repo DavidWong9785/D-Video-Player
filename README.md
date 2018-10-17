@@ -53,7 +53,8 @@
         2为流畅，1为高清（默认），0为超清，使用者可以根据回调值设置视频播放地址"
   </pre>
 * 注意
-- 每个回调的事件都会带上两个参数，一个是$event，一个是video对象
+- 每个回调的事件都会带上两个参数，一个是$event，一个是video对象，除了@on-rate-change
+- @on-rate-change的第一个参数是当前码率，第二个是video对象
 - 使用者可以利用video对象对视频进行操作，如play、pause
 - 但不可以用video对象设置src，这是不允许的，单项数据流，
 - 所以需要修改src就修改需要传入的src，正确：this.src = xxx，错误：video.src = xxx;
