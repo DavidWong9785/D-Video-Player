@@ -59,3 +59,8 @@
 - 但不可以用video对象设置src，这是不允许的，单项数据流，
 - 所以需要修改src就修改需要传入的src，正确：this.src = xxx，错误：video.src = xxx;
 - 必须安装iview的依赖和导入iview的样式文件
+
+* 技巧
+* 可以现在on-loadeddata获取video对象，便于后面使用
+* src的改变是不会重置进度条的，为了便于切换码率后可以继续保持当前进度
+* 但不需要切换码率时，单单改变src不需要保存进度，可以使用video.currentTime = 0重置
