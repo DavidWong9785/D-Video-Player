@@ -19,22 +19,22 @@
             <div class="controlNav" v-show="show" ref="controlNav">
                 <!-- 播放/暂停 -->
                 <play-pause 
-                    :class="options.noRatePanel? 'noRatePanel' : ''" 
+                    :class="this.noRatePanel? 'noRatePanel' : ''" 
                     :playStatus="playStatus"
                     @on-play-status-change="togglePlay"></play-pause>
                 <!-- 时间 -->
                 <show-times 
-                    :class="options.noRatePanel? 'noRatePanel' : ''"
+                    :class="this.noRatePanel? 'noRatePanel' : ''"
                     :currentTime="currentTime"
                     :duration="duration"></show-times>
                 <!-- 进度条 -->
                 <progress-bar 
-                    :class="options.noRatePanel? 'noRatePanel' : ''" 
+                    :class="this.noRatePanel? 'noRatePanel' : ''" 
                     :value="progress"
                     @on-progress-bar-change="progressBarChange"></progress-bar>
                 <!-- 音量控制 -->
                 <volumePanel 
-                    :class="options.noRatePanel? 'noRatePanel' : ''" 
+                    :class="this.noRatePanel? 'noRatePanel' : ''" 
                     :value="volumeProgress" 
                     :volumeStatus="volumeStatus"
                     @on-progress-bar-change="volumeChange" 
@@ -42,11 +42,11 @@
                 <!-- 码率选择 -->
                 <ratePanel 
                     :rate="rate"
-                    v-if="!options.noRatePanel"
+                    v-if="!this.noRatePanel"
                     @on-rate-change="rateChange"></ratePanel>
                 <!-- 全屏 -->
                 <full-screen 
-                    :class="options.noRatePanel? 'noRatePanel' : ''" 
+                    :class="this.noRatePanel? 'noRatePanel' : ''" 
                     :screenStatus="screenStatus"
                     @on-full-cscreen-change="toggleScreen"></full-screen>
             </div>
@@ -69,9 +69,10 @@
             return {
                 show: true,
                 playStatus: false,
+                noRatePanel: true,
                 progress: 0,
                 volumeStatus: true,
-                volumeProgress: 0,
+                volumeProgress: 25,
                 tempVolume: 0,
                 screenStatus: false,
                 player: {},
@@ -134,7 +135,6 @@
                 })
                 this.$refs.video.addEventListener('error', function (e) {
                     vm.progress = 0;
-                    vm.volumeProgress = 0;
                     vm.$refs.video.poster = '';
                     vm.errorTag = true;
                 });
@@ -187,7 +187,7 @@
                 this.$refs.video.preload = preload;
                 this.$refs.video.poster = poster;
                 this.$refs.video.src = this.src;
-
+                this.noRatePanel = noRatePanel;
                 // 退出全屏
                 document.addEventListener("webkitfullscreenchange", vm.screenResize);
             },
@@ -261,7 +261,6 @@
                 this.volumeStatus = !this.volumeStatus;
                 if (!this.volumeStatus) {
                     this.tempVolume = this.volumeProgress;
-                    this.volumeChange(0);
                 } else {
                     this.volumeChange(this.tempVolume);
                 }
@@ -293,6 +292,7 @@
                 if (!this.volumeStatus && value != 0) {
                     this.volumeStatus=true;
                 }
+                this.$refs.video.muted = false;
                 this.volumeProgress = value;
                 this.$refs.video.volume = value / 100;
             },

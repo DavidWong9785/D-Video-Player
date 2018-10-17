@@ -20,7 +20,8 @@
 
         props: {
             value: {
-                type: Number
+                type: Number,
+                default: 25
             },
             volumeStatus: {
                 type: Boolean
