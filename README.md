@@ -12,11 +12,11 @@
   <pre>
     import Vue form 'vue'
     import 'iview/dist/styles/iview.css'
-    import DVideo from 'd-video-player'
-    Vue.use(DVideo);
   </pre>
 * 在组件中使用
   <pre>
+    import DVideo from 'd-video-player'
+    components: {DVideo},
     &lt;d-video
       :src="src"
       :type="type"
