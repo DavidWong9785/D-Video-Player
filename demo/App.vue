@@ -1,7 +1,6 @@
 <template>
     <div id="app">
         <d-video
-            ref="dVideo"
             :src="src"
             :type="type"
             :rate="rate"

@@ -5,7 +5,7 @@
         <Icon type="md-volume-off" v-if="!volumeStatus" @click="toggleVolume" />
         <Slider 
             :value="value" 
-            style="width:100%;margin-left:0.5em;"
+            style="line-height: 1;width:100%;margin-left:0.5em;"
             @on-change="progressBarChange"></Slider>
     </div>
 </template>

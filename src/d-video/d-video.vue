@@ -1,4 +1,4 @@
-﻿<!--  -->
+<!--  -->
 <template>
     <div class="d-video-box" @mousemove="controllBottomNav" @dblclick="dbclickToggleScreen">
         <div ref="videoBox" class="d-video-panel">
@@ -137,6 +137,7 @@
                     vm.progress = 0;
                     vm.$refs.video.poster = '';
                     vm.errorTag = true;
+                    console.log(vm.$refs.video.error);
                 });
                 this.$refs.video.addEventListener('loadeddata', function (e) {
                     vm.$emit('on-loadeddata', e, vm.$refs.video);

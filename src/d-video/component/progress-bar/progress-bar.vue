@@ -4,7 +4,7 @@
         <Slider 
             :value="value" 
             @on-change="progressBarChange" 
-            style="width:100%;"></Slider>
+            style="line-height: 1;width:100%;"></Slider>
     </div>
 </template>
 
