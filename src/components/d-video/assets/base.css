@@ -1,0 +1,9 @@
+.ivu-slider-bar{
+    background: orange!important;
+}
+.ivu-slider-button-dragging, .ivu-slider-button:focus, .ivu-slider-button:hover{
+    border-color: orange!important;
+}
+.ivu-slider-button{
+    border-color: orange!important;
+}

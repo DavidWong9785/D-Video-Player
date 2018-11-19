@@ -1,19 +1,19 @@
 # D-Video-Player
-基于Vue和iView的视频播放组件
+A video player component base on Vue and iview
 
-## 快速上手
-* 安装
+## Build Setup
+* setup
 <pre>
   npm install d-video-player --save
   npm install iview --save
 </pre>
 
-* 导入
+* import
   <pre>
     import Vue form 'vue'
     import 'iview/dist/styles/iview.css'
   </pre>
-* 在组件中使用
+* use
   <pre>
     import DVideo from 'd-video-player'
     components: {DVideo},
@@ -25,42 +25,50 @@
       @on-pause="pause"
       @on-start="start"
       @on-ended="end"
+      @on-error="handleError"
       @on-loadeddata="loadeddata"
       @on-timeupdate="timeupdate"
       @on-rate-change="rateChange"
       &gt;&lt;/d-video&gt;
   </pre>
-* 参数说明
+* params explain
   <pre>
-    :src="视频路径"
-    :type="视频类型，source标签里的type"
-    :rate="码率，这一项是在设置了显示率切换menu之后才会有效"
-    :options="参数"
+    :src="video path"
+    :type="video type -- tag source's type, for example, video/mp4, default value is video/mp4"
+    :rate="rate, just a tag, it will take effect when you already set noRatePanel = false, also the rate menu can show"
+    :options="params"
       options : {
-        autoplay，   //默认为false
-        muted，      //默认为false
-        loop，       //默认为false
-        noRatePanel，//默认为false，是否显示码率切换menu
-        preload，    //默认为'auto'
-        poster       //默认为''
+        autoplay，   //default false
+        muted，      //default false
+        loop，       //default false
+        noRatePanel，//default true, if you want show the rate menu, you can set it false
+        preload，    //default auto
+        poster       //default ''
       }
-    @on-pause="pause回调"
-    @on-start="start回调"
-    @on-ended="end回调"
-    @on-timeupdate="timeupdate回调"
-    @on-loadeddata="loadeddata回调"
-    @on-rate-change="点击menu切换码率的回调，返回当前码率，是数字，
-        2为流畅，1为高清（默认），0为超清，使用者可以根据回调值设置视频播放地址"
+    @on-pause="pause callback"
+    @on-start="start callback"
+    @on-ended="end callback"
+    @on-error="error callback"
+    @on-timeupdate="timeupdate callback"
+    @on-loadeddata="loadeddata callback"
+    @on-rate-change="when you click the rate menu, it will return the current rate, 
+        2 -- ld，1 -- sd（default），0 -- hd，you can set the video src as you needed"
   </pre>
-* 注意
-- 每个回调的事件都会带上两个参数，一个是$event，一个是video对象，除了@on-rate-change
-- @on-rate-change的第一个参数是当前码率，第二个是video对象
-- 使用者可以利用video对象对视频进行操作，如play、pause
-- 但不可以用video对象设置src，这是不允许的，单项数据流，
-- 所以需要修改src就修改需要传入的src，正确：this.src = xxx，错误：video.src = xxx;
-- 必须安装iview的依赖和导入iview的样式文件
-
-* 技巧
-* 可以现在on-loadeddata获取video对象，便于后面使用
-* src的改变是不会重置进度条的，为了便于切换码率后可以继续保持当前进度
-* 但不需要切换码率时，单单改变src不需要保存进度，可以使用video.currentTime = 0重置
+* attention and skills
+- every callback have two param
+  <pre>
+    @on-pause="pause($event, video)"
+    @on-start="start($event, video)"
+    @on-ended="end($event, video)"
+    @on-error="handleError($event, errorMsg)"
+    @on-loadeddata="loadeddata($event, video)"
+    @on-timeupdate="timeupdate(currentTime, video)"
+    @on-rate-change="rateChange(value, video)"
+  </pre>
+- you can get the video object on callback - 'on-loadeddata', also you can use this object operate the video, for example, play() or pause()
+- but you can't use video object to set the video src directly
+- if you need to set or change the video src, you can modify props src
+- true：this.src = xxx，false：video.src = xxx;
+- you must setup iview and import iview style
+- if video'src change, it will not reset the progress bar, player would keep the current time and progress
+- if you want reset the progress bar when change video'src, you can try 'video.currentTime = 0'
