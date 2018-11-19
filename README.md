@@ -1,6 +1,9 @@
 # D-Video-Player
 A video player component base on Vue and iview
 
+## Demo Address
+  http://component.davidwong.cn/d-video-player
+
 ## Build Setup
 * setup
 <pre>
