@@ -57,7 +57,7 @@ A video player component base on Vue and iview
     @on-rate-change="when you click the rate menu, it will return the current rate, 
         2 -- ld，1 -- sd（default），0 -- hd，you can set the video src as you needed"
   </pre>
-* attention and skills
+## attention and skills
 - every callback have two param
   <pre>
     @on-pause="pause($event, video)"
